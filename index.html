@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação de Desempenho | Instituto Santa Rosa</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- MENU LATERAL -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-chart-line"></i>
+            <h2>Instituto Santa Rosa</h2>
+        </div>
+
+        <nav>
+
+            <button class="menu active" onclick="mostrarTela('dashboard')">
+                <i class="fa-solid fa-chart-column"></i>
+                Desempenho
+            </button>
+
+            <button class="menu" onclick="mostrarTela('criterios')">
+                <i class="fa-solid fa-list-check"></i>
+                Critérios Avaliados
+            </button>
+
+        </nav>
+
+    </aside>
+
+    <!-- CONTEÚDO -->
+
+    <main class="content">
+
+        <!-- DASHBOARD -->
+
+        <section id="dashboard" class="tela">
+
+            <h1>Avaliação de Desempenho</h1>
+            <p class="subtitulo">Julho / 2026</p>
+
+            <div class="cards">
+
+                <div class="card">
+                    <h3>Colaboradores</h3>
+                    <span>13</span>
+                </div>
+
+                <div class="card">
+                    <h3>Média Geral</h3>
+                    <span>91,4</span>
+                </div>
+
+                <div class="card">
+                    <h3>Melhor Colaborador</h3>
+                    <span>Maria Beatriz</span>
+                </div>
+
+                <div class="card">
+                    <h3>Destaque do Mês</h3>
+                    <span>⭐ Maria Beatriz</span>
+                </div>
+
+            </div>
+
+            <div class="grafico">
+
+                <h2>Desempenho dos Colaboradores</h2>
+
+                <div class="barra">
+                    <span>Maria Beatriz</span>
+                    <div class="progresso">
+                        <div style="width:97%">97%</div>
+                    </div>
+                </div>
+
+                <div class="barra">
+                    <span>Carlos Eduardo</span>
+                    <div class="progresso">
+                        <div style="width:94%">94%</div>
+                    </div>
+                </div>
+
+                <div class="barra">
+                    <span>Marcela Carvalho</span>
+                    <div class="progresso">
+                        <div style="width:92%">92%</div>
+                    </div>
+                </div>
+
+                <div class="barra">
+                    <span>Bárbara Mara</span>
+                    <div class="progresso">
+                        <div style="width:88%">88%</div>
+                    </div>
+                </div>
+
+                <div class="barra">
+                    <span>Érika Maria</span>
+                    <div class="progresso">
+                        <div style="width:84%">84%</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="tabela">
+
+                <h2>Ranking</h2>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Colaborador</th>
+                            <th>Cargo</th>
+                            <th>Nota</th>
+                            <th>Status</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Maria Beatriz</td>
+                            <td>Recepção</td>
+                            <td>97</td>
+                            <td>🏆 Excelente</td>
+                        </tr>
+
+                        <tr>
+                            <td>Carlos Eduardo</td>
+                            <td>Financeiro</td>
+                            <td>94</td>
+                            <td>🥇 Excelente</td>
+                        </tr>
+
+                        <tr>
+                            <td>Marcela Carvalho</td>
+                            <td>Estética</td>
+                            <td>92</td>
+                            <td>🥈 Excelente</td>
+                        </tr>
+
+                        <tr>
+                            <td>Bárbara Mara</td>
+                            <td>Recepção</td>
+                            <td>88</td>
+                            <td>🟢 Ótimo</td>
+                        </tr>
+
+                        <tr>
+                            <td>Érika Maria</td>
+                            <td>Comercial</td>
+                            <td>84</td>
+                            <td>🟡 Bom</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <!-- CRITÉRIOS -->
+
+        <section id="criterios" class="tela" style="display:none;">
+
+            <h1>Critérios Avaliados</h1>
+
+            <div class="criterios-grid">
+
+                <!-- ⏰ Pontualidade -->
+            <div class="criterio-card">
+                <h3>⏰ Pontualidade</h3>
+                <p>Chegar no horário e cumprir a jornada.</p>
+
+                <div class="escala">
+                    <div><strong>0–2</strong> - Muitos atrasos e descumprimento frequente do horário.</div>
+                    <div><strong>3–5</strong> - Alguns atrasos e necessidade de melhoria.</div>
+                    <div><strong>6–8</strong> - Geralmente pontual, com poucos atrasos.</div>
+                    <div><strong>9–10</strong> - Sempre pontual e cumpre integralmente a jornada.</div>
+                </div>
+            </div>
+
+            <!-- 📅 Assiduidade -->
+            <div class="criterio-card">
+                <h3>📅 Assiduidade</h3>
+                <p>Presença regular e comprometimento com a jornada.</p>
+
+                <div class="escala">
+                    <div><strong>0–2</strong> - Faltas frequentes e injustificadas.</div>
+                    <div><strong>3–5</strong> - Algumas faltas ou ausências recorrentes.</div>
+                    <div><strong>6–8</strong> - Boa frequência, poucas ocorrências.</div>
+                    <div><strong>9–10</strong> - Frequência exemplar, sem faltas injustificadas.</div>
+                </div>
+            </div>
+
+            <!-- ✅ Checklist Diário -->
+            <div class="criterio-card">
+                <h3>✅ Checklist Diário</h3>
+                <p>Execução completa das atividades diárias.</p>
+
+                <div class="escala">
+                    <div><strong>0–2</strong> - Não realiza o checklist.</div>
+                    <div><strong>3–5</strong> - Realiza parcialmente.</div>
+                    <div><strong>6–8</strong> - Executa quase sempre corretamente.</div>
+                    <div><strong>9–10</strong> - Cumpre integralmente todos os dias.</div>
+                </div>
+            </div>
+
+            <!-- 🧹 Organização -->
+            <div class="criterio-card">
+                <h3>🧹 Organização</h3>
+                <p>Manter ambiente e materiais organizados.</p>
+
+                <div class="escala">
+                    <div><strong>0–2</strong> - Ambiente constantemente desorganizado.</div>
+                    <div><strong>3–5</strong> - Organização irregular.</div>
+                    <div><strong>6–8</strong> - Ambiente geralmente organizado.</div>
+                    <div><strong>9–10</strong> - Organização exemplar.</div>
+                </div>
+            </div>
+
+            <!-- 🤝 Trabalho em Equipe -->
+            <div class="criterio-card">
+                <h3>🤝 Trabalho em Equipe</h3>
+                <p>Cooperação e relacionamento com os colegas.</p>
+
+                <div class="escala">
+                    <div><strong>0–2</strong> - Dificuldade em trabalhar em equipe.</div>
+                    <div><strong>3–5</strong> - Coopera apenas quando solicitado.</div>
+                    <div><strong>6–8</strong> - Boa colaboração com a equipe.</div>
+                    <div><strong>9–10</strong> - Excelente espírito de equipe.</div>
+                </div>
+            </div>
+
+            <!-- 💬 Comunicação -->
+            <div class="criterio-card">
+                <h3>💬 Comunicação</h3>
+                <p>Clareza, respeito e assertividade.</p>
+
+                <div class="escala">
+                    <div><strong>0–2</strong> - Comunicação inadequada.</div>
+                    <div><strong>3–5</strong> - Comunicação com falhas.</div>
+                    <div><strong>6–8</strong> - Boa comunicação.</div>
+                    <div><strong>9–10</strong> - Comunicação clara, respeitosa e eficaz.</div>
+                </div>
+            </div>
+
+            <!-- 💡 Proatividade -->
+            <div class="criterio-card">
+                <h3>💡 Proatividade</h3>
+                <p>Antecipação de necessidades e iniciativa.</p>
+
+                <div class="escala">
+                    <div><strong>0–2</strong> - Aguarda ordens constantemente.</div>
+                    <div><strong>3–5</strong> - Pouca iniciativa.</div>
+                    <div><strong>6–8</strong> - Demonstra iniciativa em diversas situações.</div>
+                    <div><strong>9–10</strong> - Sempre propõe soluções e melhorias.</div>
+                </div>
+            </div>
+
+            <!-- 🎯 Comprometimento -->
+            <div class="criterio-card">
+                <h3>🎯 Comprometimento</h3>
+                <p>Responsabilidade com metas e resultados.</p>
+
+                <div class="escala">
+                    <div><strong>0–2</strong> - Baixo comprometimento.</div>
+                    <div><strong>3–5</strong> - Cumpre parcialmente suas responsabilidades.</div>
+                    <div><strong>6–8</strong> - Comprometido com o trabalho.</div>
+                    <div><strong>9–10</strong> - Alto comprometimento com a empresa.</div>
+                </div>
+            </div>
+
+            <!-- ❤️ Atendimento Humanizado -->
+            <div class="criterio-card">
+                <h3>❤️ Atendimento Humanizado</h3>
+                <p>Empatia, cordialidade e atenção ao paciente.</p>
+
+                <div class="escala">
+                    <div><strong>0–2</strong> - Atendimento inadequado.</div>
+                    <div><strong>3–5</strong> - Atendimento regular.</div>
+                    <div><strong>6–8</strong> - Atendimento cordial.</div>
+                    <div><strong>9–10</strong> - Atendimento humanizado e de excelência.</div>
+                </div>
+            </div>
+
+            <!-- 👔 Postura Profissional -->
+            <div class="criterio-card">
+                <h3>👔 Postura Profissional</h3>
+                <p>Ética, apresentação e respeito às normas.</p>
+
+                <div class="escala">
+                    <div><strong>0–2</strong> - Postura inadequada.</div>
+                    <div><strong>3–5</strong> - Necessita melhorar a postura.</div>
+                    <div><strong>6–8</strong> - Boa postura profissional.</div>
+                    <div><strong>9–10</strong> - Exemplo de ética e profissionalismo.</div>
+                </div>
+            </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
