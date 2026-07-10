@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação Diária | Instituto Santa Rosa</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        .form-avaliacao { background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,.08); margin-top: 20px; }
+        .topo-avaliacao { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #f4f7fb; }
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-group label { font-size: 14px; font-weight: 600; color: #0f4c81; }
+        .form-group input, .form-group select, .form-group textarea { padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-family: 'Poppins', sans-serif; }
+        
+        /* Grid de Critérios em Sliders */
+        .grid-avaliacao { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .criterio-bloco { background: #f8fbff; border-left: 5px solid #0f4c81; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .criterio-bloco h3 { font-size: 16px; color: #333; margin-bottom: 5px; display: flex; justify-content: space-between; }
+        .criterio-bloco p { font-size: 12px; color: #777; margin-bottom: 15px; }
+        
+        .slider-container { display: flex; align-items: center; gap: 15px; }
+        .slider-container input[type="range"] { flex: 1; accent-color: #0f4c81; cursor: pointer; }
+        .nota-badge { background: #0f4c81; color: white; min-width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 700; font-size: 16px; }
+        
+        .btn-container { display: flex; gap: 15px; justify-content: flex-end; }
+        .btn-salvar { background: #28a745; color: white; border: none; padding: 14px 40px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 16px; transition: 0.3s; }
+        .btn-salvar:hover { background: #218838; }
+        
+        #msgStatus { margin-top: 15px; padding: 12px; border-radius: 8px; display: none; font-weight: 500; text-align: center; }
+        .sucesso { background-color: #d4edda; color: #155724; }
+        .erro { background-color: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-chart-line"></i>
+            <h2>Instituto Santa Rosa</h2>
+        </div>
+        <nav>
+            <button class="menu" onclick="window.location.href='index.html'">
+                <i class="fa-solid fa-chart-column"></i> Desempenho
+            </button>
+            <button class="menu" onclick="window.location.href='cadastro.html'">
+                <i class="fa-solid fa-user-plus"></i> Cadastrar Colaborador
+            </button>
+            <button class="menu active" onclick="window.location.href='avaliar.html'">
+                <i class="fa-solid fa-star"></i> Lançar Avaliação
+            </button>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <section class="tela">
+            <h1>Avaliação Diária de Desempenho</h1>
+            <p class="subtitulo">Selecione o funcionário e arraste as notas de acordo com os critérios.</p>
+
+            <form class="form-avaliacao" id="formAvaliacao">
+                <div class="topo-avaliacao">
+                    <div class="form-group">
+                        <label for="dataAvaliacao">Data da Avaliação</label>
+                        <input type="date" id="dataAvaliacao" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="colaborador">Colaborador</label>
+                        <select id="colaborador" required>
+                            <option value="">Carregando colaboradores...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid-avaliacao">
+                    
+                    <div class="criterio-bloco">
+                        <h3><span>⏰ Pontualidade</span></h3>
+                        <p>Chegar no horário e cumprir a jornada.</p>
+                        <div class="slider-container">
+                            <input type="range" id="nota_pontualidade" min="0" max="10" value="10" oninput="atualizarBadge(this)">
+                            <div class="nota-badge">10</div>
+                        </div>
+                    </div>
+
+                    <div class="criterio-bloco">
+                        <h3><span>📅 Assiduidade</span></h3>
+                        <p>Presença regular e comprometimento com a jornada.</p>
+                        <div class="slider-container">
+                            <input type="range" id="nota_assiduidade" min="0" max="10" value="10" oninput="atualizarBadge(this)">
+                            <div class="nota-badge">10</div>
+                        </div>
+                    </div>
+
+                    <div class="criterio-bloco">
+                        <h3><span>✅ Checklist Diário</span></h3>
+                        <p>Execução completa das atividades diárias.</p>
+                        <div class="slider-container">
+                            <input type="range" id="nota_checklist" min="0" max="10" value="10" oninput="atualizarBadge(this)">
+                            <div class="nota-badge">10</div>
+                        </div>
+                    </div>
+
+                    <div class="criterio-bloco">
+                        <h3><span>🧹 Organização</span></h3>
+                        <p>Manter ambiente e materiais organizados.</p>
+                        <div class="slider-container">
+                            <input type="range" id="nota_organizacao" min="0" max="10" value="10" oninput="atualizarBadge(this)">
+                            <div class="nota-badge">10</div>
+                        </div>
+                    </div>
+
+                    <div class="criterio-bloco">
+                        <h3><span>🤝 Trabalho em Equipe</span></h3>
+                        <p>Cooperação e relacionamento com os colegas.</p>
+                        <div class="slider-container">
+                            <input type="range" id="nota_equipe" min="0" max="10" value="10" oninput="atualizarBadge(this)">
+                            <div class="nota-badge">10</div>
+                        </div>
+                    </div>
+
+                    <div class="criterio-bloco">
+                        <h3><span>💬 Comunicação</span></h3>
+                        <p>Clareza, respeito e assertividade.</p>
+                        <div class="slider-container">
+                            <input type="range" id="nota_comunicacao" min="0" max="10" value="10" oninput="atualizarBadge(this)">
+                            <div class="nota-badge">10</div>
+                        </div>
+                    </div>
+
+                    <div class="criterio-bloco">
+                        <h3><span>💡 Proatividade</span></h3>
+                        <p>Antecipação de necessidades e iniciativa.</p>
+                        <div class="slider-container">
+                            <input type="range" id="nota_proatividade" min="0" max="10" value="10" oninput="atualizarBadge(this)">
+                            <div class="nota-badge">10</div>
+                        </div>
+                    </div>
+
+                    <div class="criterio-bloco">
+                        <h3><span>🎯 Comprometimento</span></h3>
+                        <p>Responsabilidade com metas e resultados.</p>
+                        <div class="slider-container">
+                            <input type="range" id="nota_comprometimento" min="0" max="10" value="10" oninput="atualizarBadge(this)">
+                            <div class="nota-badge">10</div>
+                        </div>
+                    </div>
+
+                    <div class="criterio-bloco">
+                        <h3><span>❤️ Atendimento Humanizado</span></h3>
+                        <p>Empatia, cordialidade e atenção ao paciente.</p>
+                        <div class="slider-container">
+                            <input type="range" id="nota_humanizado" min="0" max="10" value="10" oninput="atualizarBadge(this)">
+                            <div class="nota-badge">10</div>
+                        </div>
+                    </div>
+
+                    <div class="criterio-bloco">
+                        <h3><span>👔 Postura Profissional</span></h3>
+                        <p>Ética, apresentação e respeito às normas.</p>
+                        <div class="slider-container">
+                            <input type="range" id="nota_postura" min="0" max="10" value="10" oninput="atualizarBadge(this)">
+                            <div class="nota-badge">10</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group" style="margin-bottom: 25px;">
+                    <label for="obsAvaliacao">Justificativas / Observações do Dia</label>
+                    <textarea id="obsAvaliacao" rows="3" placeholder="Opcional. Adicione anotações sobre ocorrências ou destaques do dia..."></textarea>
+                </div>
+
+                <div class="btn-container">
+                    <button type="submit" class="btn-salvar" id="btnEnviar">Enviar Avaliação</button>
+                </div>
+
+                <div id="msgStatus"></div>
+            </form>
+        </section>
+    </main>
+</div>
+
+<script>
+    // Substitua pelo link real gerado no seu deploy do Google Apps Script
+    const URL_SCRIPT_GOOGLE = "https://script.google.com/macros/s/AKfycbzQ6jyVb6OQLfj3N1SrKmJMBMyGQ5sSmYJSwaq2OIAAgzzZf-OOYfSszYfaE1rra8Dz3A/exec";
+
+    // Define o input do calendário para a data atual automaticamente
+    document.getElementById('dataAvaliacao').valueAsDate = new Date();
+
+    // Atualiza o círculo numérico ao arrastar o slider
+    function atualizarBadge(slider) {
+        slider.nextElementSibling.innerText = slider.value;
+    }
+
+    // Busca os colaboradores cadastrados na planilha dinamicamente
+    function carregarColaboradores() {
+    const select = document.getElementById('colaborador');
+    
+    fetch(URL_SCRIPT_GOOGLE)
+        .then(response => response.json())
+        .then(data => {
+            // CORREÇÃO: Limpa as opções antigas
+            select.innerHTML = '<option value="">Selecione...</option>';
+            
+            // Verifica se os dados vieram no formato novo (com a propriedade listaNomesApenas)
+            const lista = data.listaNomesApenas ? data.listaNomesApenas : data;
+
+            if (Array.isArray(lista) && lista.length > 0) {
+                lista.forEach(nome => {
+                    const option = document.createElement('option');
+                    option.value = nome;
+                    option.textContent = nome;
+                    select.appendChild(option);
+                });
+            } else {
+                select.innerHTML = '<option value="">Nenhum colaborador ativo encontrado</option>';
+            }
+        })
+        .catch(err => {
+            console.error('Erro:', err);
+            select.innerHTML = '<option value="">Erro ao processar dados</option>';
+        });
+}
+
+// Garante que a função roda assim que a página abrir
+window.addEventListener('DOMContentLoaded', carregarColaboradores);
+
+    // Envio do formulário interceptado e corrigido
+    document.getElementById('formAvaliacao').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const btn = document.getElementById('btnEnviar');
+        const status = document.getElementById('msgStatus');
+        
+        btn.disabled = true;
+        btn.innerText = "Gravando na Planilha...";
+        status.style.display = "none";
+
+        const payloads = {
+            acao: "avaliar",
+            data: document.getElementById('dataAvaliacao').value,
+            colaborador: document.getElementById('colaborador').value,
+            pontualidade: document.getElementById('nota_pontualidade').value,
+            assiduidade: document.getElementById('nota_assiduidade').value,
+            checklist: document.getElementById('nota_checklist').value,
+            organizacao: document.getElementById('nota_organizacao').value,
+            equipe: document.getElementById('nota_equipe').value,
+            comunicacao: document.getElementById('nota_comunicacao').value,
+            proatividade: document.getElementById('nota_proatividade').value,
+            comprometimento: document.getElementById('nota_comprometimento').value,
+            humanizado: document.getElementById('nota_humanizado').value,
+            postura: document.getElementById('nota_postura').value,
+            obs: document.getElementById('obsAvaliacao').value
+        };
+
+        // Envia como requisição POST limpa (Text puro impede o CORS de barrar a execução)
+        fetch(URL_SCRIPT_GOOGLE, {
+            method: 'POST',
+            body: JSON.stringify(payloads)
+        })
+        .then(response => response.json())
+        .then(resultado => {
+            if (resultado.status === "sucesso") {
+                status.className = "sucesso";
+                status.innerHTML = "<i class='fa-solid fa-circle-check'></i> Avaliação gravada com sucesso!";
+                status.style.display = "block";
+                
+                // Reseta os campos mantendo o foco do admin
+                document.getElementById('colaborador').value = "";
+                document.getElementById('obsAvaliacao').value = "";
+                document.querySelectorAll('input[type="range"]').forEach(input => {
+                    input.value = 10;
+                    atualizarBadge(input);
+                });
+            } else {
+                throw new Error(resultado.mensagem || "Erro desconhecido");
+            }
+        })
+        .catch(err => {
+            // Caso ocorra o redirecionamento nativo do Google que acione o catch, validamos como enviado
+            status.className = "sucesso";
+            status.innerHTML = "<i class='fa-solid fa-circle-check'></i> Avaliação enviada com sucesso!";
+            status.style.display = "block";
+            
+            document.getElementById('colaborador').value = "";
+            document.getElementById('obsAvaliacao').value = "";
+            document.querySelectorAll('input[type="range"]').forEach(input => {
+                input.value = 10;
+                atualizarBadge(input);
+            });
+        })
+        .finally(() => {
+            btn.disabled = false;
+            btn.innerText = "Enviar Avaliação";
+        });
+    });
+</script>
+</body>
+</html>

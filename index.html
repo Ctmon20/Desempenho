@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação de Desempenho | Instituto Santa Rosa</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- MENU LATERAL -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-chart-line"></i>
+            <h2>Instituto Santa Rosa</h2>
+        </div>
+
+        <nav>
+            <button class="menu" onclick="window.location.href='cadastro.html'">
+                <i class="fa-solid fa-user-plus"></i>
+                Cadastrar Colaborador
+            </button>
+
+            <button class="menu active" onclick="mostrarTela('dashboard')">
+                <i class="fa-solid fa-chart-column"></i>
+                Desempenho
+            </button>
+
+            <button class="menu" onclick="mostrarTela('criterios')">
+                <i class="fa-solid fa-list-check"></i>
+                Critérios Evaluados
+            </button>
+
+            <button class="menu" onclick="window.location.href='avaliar.html'">
+                <i class="fa-solid fa-star"></i>
+                Lançar Avaliação Diária
+            </button>
+        </nav>
+
+    </aside>
+
+    <!-- CONTEÚDO -->
+    <main class="content">
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="tela">
+
+            <h1>Avaliação de Desempenho</h1>
+            <p class="subtitulo" id="mesAtual">Carregando período...</p>
+
+            <div class="cards">
+                <div class="card">
+                    <h3>Colaboradores</h3>
+                    <span id="cardTotalColab">...</span>
+                </div>
+
+                <div class="card">
+                    <h3>Média Geral</h3>
+                    <span id="cardMediaGeral">...</span>
+                </div>
+
+                <div class="card">
+                    <h3>Melhor Colaborador</h3>
+                    <span id="cardMelhorColab">...</span>
+                </div>
+
+                <div class="card">
+                    <h3>Destaque do Mês</h3>
+                    <span id="cardDestaque">...</span>
+                </div>
+            </div>
+
+            <div class="grafico">
+                <h2>Desempenho dos Colaboradores</h2>
+                <div id="containerGrafico">
+                    <p style="padding: 20px; color: #777;">Buscando métricas reais na planilha...</p>
+                </div>
+            </div>
+
+            <div class="tabela">
+                <h2>Ranking Geral</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Colaborador</th>
+                            <th>Cargo</th>
+                            <th>Nota Média</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpoTabelaRanking">
+                        <tr>
+                            <td colspan="4" style="text-align:center; color:#777; padding:20px;">Processando dados...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <!-- CRITÉRIOS -->
+        <section id="criterios" class="tela" style="display:none;">
+
+            <h1>Critérios Avaliados</h1>
+
+            <div class="criterios-grid">
+
+                <!-- ⏰ Pontualidade -->
+                <div class="criterio-card">
+                    <h3>⏰ Pontualidade</h3>
+                    <p>Chegar no horário e cumprir a jornada.</p>
+                    <div class="escala">
+                        <div><strong>0–2</strong> - Muitos atrasos e descumprimento frequente do horário.</div>
+                        <div><strong>3–5</strong> - Alguns atrasos e necessidade de melhoria.</div>
+                        <div><strong>6–8</strong> - Geralmente pontual, com poucos atrasos.</div>
+                        <div><strong>9–10</strong> - Sempre pontual e cumpre integralmente a jornada.</div>
+                    </div>
+                </div>
+
+                <!-- 📅 Assiduidade -->
+                <div class="criterio-card">
+                    <h3>📅 Assiduidade</h3>
+                    <p>Presença regular e comprometimento com a jornada.</p>
+                    <div class="escala">
+                        <div><strong>0–2</strong> - Faltas frequentes e injustificadas.</div>
+                        <div><strong>3–5</strong> - Algumas faltas ou ausências recorrentes.</div>
+                        <div><strong>6–8</strong> - Boa frequência, poucas ocorrências.</div>
+                        <div><strong>9–10</strong> - Frequência exemplar, sem faltas injustificadas.</div>
+                    </div>
+                </div>
+
+                <!-- ✅ Checklist Diário -->
+                <div class="criterio-card">
+                    <h3>✅ Checklist Diário</h3>
+                    <p>Execução completa das atividades diárias.</p>
+                    <div class="escala">
+                        <div><strong>0–2</strong> - Não realiza o checklist.</div>
+                        <div><strong>3–5</strong> - Realiza parcialmente.</div>
+                        <div><strong>6–8</strong> - Executa quase sempre corretamente.</div>
+                        <div><strong>9–10</strong> - Cumpre integralmente todos os dias.</div>
+                    </div>
+                </div>
+
+                <!-- 🧹 Organização -->
+                <div class="criterio-card">
+                    <h3>🧹 Organização</h3>
+                    <p>Manter ambiente e materiais organizados.</p>
+                    <div class="escala">
+                        <div><strong>0–2</strong> - Ambiente constantemente desorganizado.</div>
+                        <div><strong>3–5</strong> - Organização irregular.</div>
+                        <div><strong>6–8</strong> - Ambiente geralmente organizado.</div>
+                        <div><strong>9–10</strong> - Organização exemplar.</div>
+                    </div>
+                </div>
+
+                <!-- 🤝 Trabalho em Equipe -->
+                <div class="criterio-card">
+                    <h3>🤝 Trabalho em Equipe</h3>
+                    <p>Cooperação e relacionamento com os colegas.</p>
+                    <div class="escala">
+                        <div><strong>0–2</strong> - Dificuldade em trabalhar em equipe.</div>
+                        <div><strong>3–5</strong> - Coopera apenas quando solicitado.</div>
+                        <div><strong>6–8</strong> - Boa colaboração com a equipe.</div>
+                        <div><strong>9–10</strong> - Excelente espírito de equipe.</div>
+                    </div>
+                </div>
+
+                <!-- 💬 Comunicação -->
+                <div class="criterio-card">
+                    <h3>💬 Comunicação</h3>
+                    <p>Clareza, respeito e assertividade.</p>
+                    <div class="escala">
+                        <div><strong>0–2</strong> - Comunicação inadequada.</div>
+                        <div><strong>3–5</strong> - Comunicação com falhas.</div>
+                        <div><strong>6–8</strong> - Boa comunicação.</div>
+                        <div><strong>9–10</strong> - Comunicação clara, respeitosa e eficaz.</div>
+                    </div>
+                </div>
+
+                <!-- 💡 Proatividade -->
+                <div class="criterio-card">
+                    <h3>💡 Proatividade</h3>
+                    <p>Antecipação de necessidades e iniciativa.</p>
+                    <div class="escala">
+                        <div><strong>0–2</strong> - Aguarda ordens constantemente.</div>
+                        <div><strong>3–5</strong> - Pouca iniciativa.</div>
+                        <div><strong>6–8</strong> - Demonstra iniciativa em diversas situações.</div>
+                        <div><strong>9–10</strong> - Sempre propõe soluções e melhorias.</div>
+                    </div>
+                </div>
+
+                <!-- 🎯 Comprometimento -->
+                <div class="criterio-card">
+                    <h3>🎯 Comprometimento</h3>
+                    <p>Responsabilidade com metas e resultados.</p>
+                    <div class="escala">
+                        <div><strong>0–2</strong> - Baixo comprometimento.</div>
+                        <div><strong>3–5</strong> - Cumpre parcialmente suas responsabilidades.</div>
+                        <div><strong>6–8</strong> - Comprometido com o trabalho.</div>
+                        <div><strong>9–10</strong> - Alto comprometimento com a empresa.</div>
+                    </div>
+                </div>
+
+                <!-- ❤️ Atendimento Humanizado -->
+                <div class="criterio-card">
+                    <h3>❤️ Atendimento Humanizado</h3>
+                    <p>Empatia, cordialidade e atenção ao paciente.</p>
+                    <div class="escala">
+                        <div><strong>0–2</strong> - Atendimento inadequado.</div>
+                        <div><strong>3–5</strong> - Atendimento regular.</div>
+                        <div><strong>6–8</strong> - Atendimento cordial.</div>
+                        <div><strong>9–10</strong> - Atendimento humanizado e de excelência.</div>
+                    </div>
+                </div>
+
+                <!-- 👔 Postura Profissional -->
+                <div class="criterio-card">
+                    <h3>👔 Postura Profissional</h3>
+                    <p>Ética, apresentação e respeito às normas.</p>
+                    <div class="escala">
+                        <div><strong>0–2</strong> - Postura inadequada.</div>
+                        <div><strong>3–5</strong> - Necessita melhorar a postura.</div>
+                        <div><strong>6–8</strong> - Boa postura profissional.</div>
+                        <div><strong>9–10</strong> - Exemplo de ética e profissionalismo.</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script>
+    // URL do Google Apps Script
+    const URL_SCRIPT_GOOGLE = "https://script.google.com/macros/s/AKfycbzQ6jyVb6OQLfj3N1SrKmJMBMyGQ5sSmYJSwaq2OIAAgzzZf-OOYfSszYfaE1rra8Dz3A/exec";
+
+    // Atualiza o subtítulo com o mês e ano corrente
+    const meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+    const dataAtual = new Date();
+    document.getElementById('mesAtual').innerText = `${meses[dataAtual.getMonth()]} / ${dataAtual.getFullYear()}`;
+
+    // Determina a etiqueta de status baseado na nota média real
+    function obterStatusDesempenho(nota) {
+        if (nota >= 95) return "🏆 Excelente";
+        if (nota >= 90) return "🥇 Excelente";
+        if (nota >= 85) return "🥈 Ótimo";
+        if (nota >= 70) return "🟢 Bom";
+        return "🟡 Regular";
+    }
+
+    function renderizarDashboard() {
+        fetch(URL_SCRIPT_GOOGLE)
+        .then(response => response.json())
+        .then(data => {
+            if(data.erro) {
+                console.error(data.erro);
+                return;
+            }
+
+            // 1. Atualiza os Mini Cards de Resumo
+            document.getElementById('cardTotalColab').innerText = data.totalColaboradores;
+            document.getElementById('cardMediaGeral').innerText = data.mediaGeral + "%";
+            
+            if (data.ranking && data.ranking.length > 0) {
+                const primeiroLugar = data.ranking[0].nome;
+                document.getElementById('cardMelhorColab').innerText = primeiroLugar;
+                document.getElementById('cardDestaque').innerText = `⭐ ${primeiroLugar}`;
+            } else {
+                document.getElementById('cardMelhorColab').innerText = "---";
+                document.getElementById('cardDestaque').innerText = "---";
+            }
+
+            // 2. Renderiza o Gráfico de Barras Dinâmicas
+            const containerGrafico = document.getElementById('containerGrafico');
+            containerGrafico.innerHTML = ""; 
+
+            data.ranking.forEach(colab => {
+                const barraHtml = `
+                    <div class="barra">
+                        <span>${colab.nome}</span>
+                        <div class="progresso">
+                            <div style="width:${colab.nota}%">${colab.nota}%</div>
+                        </div>
+                    </div>
+                `;
+                containerGrafico.insertAdjacentHTML('beforeend', barraHtml);
+            });
+
+            // 3. Renderiza a Tabela do Ranking Geral
+            const tabelaCorpo = document.getElementById('corpoTabelaRanking');
+            tabelaCorpo.innerHTML = ""; 
+
+            data.ranking.forEach(colab => {
+                const statusTexto = obterStatusDesempenho(colab.nota);
+                const linhaHtml = `
+                    <tr>
+                        <td><strong>${colab.nome}</strong></td>
+                        <td>${colab.cargo}</td>
+                        <td>${colab.nota}%</td>
+                        <td>${statusTexto}</td>
+                    </tr>
+                `;
+                tabelaCorpo.insertAdjacentHTML('beforeend', linhaHtml);
+            });
+        })
+        .catch(err => {
+            console.error("Erro na comunicação com o banco de dados:", err);
+            document.getElementById('containerGrafico').innerHTML = "<p style='color:red; padding:20px;'>Erro ao carregar dados do Google Sheets.</p>";
+        });
+    }
+
+    // Gerencia a alternância de visibilidade entre telas (Dashboard e Critérios)
+    function mostrarTela(idTela) {
+        document.querySelectorAll('.tela').forEach(tela => {
+            tela.style.display = 'none';
+        });
+        document.getElementById(idTela).style.display = 'block';
+        
+        // Alterna a classe ativa nos botões do menu lateral
+        document.querySelectorAll('.sidebar nav button').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // Define o estado ativo dinamicamente com base no evento de clique
+        const eventoBotao = event.currentTarget;
+        if(eventoBotao) {
+            eventoBotao.classList.add('active');
+        }
+    }
+
+    // Dispara a busca automática ao abrir a tela de desempenho
+    window.addEventListener('DOMContentLoaded', renderizarDashboard);
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>

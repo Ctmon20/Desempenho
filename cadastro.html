@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Colaboradores | Instituto Santa Rosa</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        /* Estilos adicionais específicos para o formulário de cadastro */
+        .form-cadastro {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,.08);
+            max-width: 800px;
+            margin-top: 20px;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        .form-group label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #0f4c81;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: #3fa9f5;
+            outline: none;
+            box-shadow: 0 0 5px rgba(63, 169, 245, 0.3);
+        }
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+        .btn-enviar {
+            background: #0f4c81;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+        .btn-enviar:hover {
+            background: #3fa9f5;
+        }
+        .btn-cancelar {
+            background: #e8edf5;
+            color: #333;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+        .btn-cancelar:hover {
+            background: #ddd;
+        }
+        #mensagemStatus {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+            font-weight: 500;
+            text-align: center;
+        }
+        .sucesso { background-color: #d4edda; color: #155724; }
+        .erro { background-color: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-chart-line"></i>
+            <h2>Instituto Santa Rosa</h2>
+        </div>
+        <nav>
+            <button class="menu" onclick="window.location.href='index.html'">
+                <i class="fa-solid fa-chart-column"></i>
+                Desempenho
+            </button>
+            <button class="menu.active" onclick="window.location.href='cadastro.html'">
+                <i class="fa-solid fa-user-plus"></i>
+                Cadastrar Colaborador
+            </button>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <section class="tela">
+            <h1>Cadastro de Colaborador</h1>
+            <p class="subtitulo">Insira os dados para salvar diretamente na planilha base.</p>
+
+            <form class="form-cadastro" id="formColaborador">
+                <div class="form-grid">
+                    
+                    <div class="form-group full-width">
+                        <label for="nome"><i class="fa-solid fa-user"></i> Nome Completo *</label>
+                        <input type="text" id="nome" name="NOMECARGOSETORTELEFONEEMAILADMISSÃOSTATUSOBS" required placeholder="Digite o nome completo">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cargo"><i class="fa-solid fa-briefcase"></i> Cargo *</label>
+                        <input type="text" id="cargo" required placeholder="Ex: Recepção, Financeiro">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="setor"><i class="fa-solid fa-building"></i> Setor *</label>
+                        <input type="text" id="setor" required placeholder="Ex: Atendimento, Administração">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefone"><i class="fa-solid fa-phone"></i> Telefone *</label>
+                        <input type="tel" id="telefone" required placeholder="(00) 00000-0000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email"><i class="fa-solid fa-envelope"></i> E-mail *</label>
+                        <input type="email" id="email" required placeholder="colaborador@instituto.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="admissao"><i class="fa-solid fa-calendar-days"></i> Data de Admissão *</label>
+                        <input type="date" id="admissao" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status"><i class="fa-solid fa-circle-info"></i> Status *</label>
+                        <select id="status" required>
+                            <option value="Ativo" selected>Ativo</option>
+                            <option value="Inativo">Inativo</option>
+                            <option value="Afastado">Afastado</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="obs"><i class="fa-solid fa-comment-dots"></i> Observações</label>
+                        <textarea id="obs" rows="3" placeholder="Informações adicionais..."></textarea>
+                    </div>
+
+                </div>
+
+                <div class="btn-container">
+                    <button type="button" class="btn-cancelar" onclick="window.location.href='index.html'">Voltar</button>
+                    <button type="submit" class="btn-enviar" id="btnSalvar">Salvar Colaborador</button>
+                </div>
+
+                <div id="mensagemStatus"></div>
+            </form>
+        </section>
+    </main>
+
+</div>
+
+<script>
+    // URL gerada na Implantação do Google Apps Script (Passo 3)
+    const URL_SCRIPT_GOOGLE = "https://script.google.com/macros/s/AKfycbzQ6jyVb6OQLfj3N1SrKmJMBMyGQ5sSmYJSwaq2OIAAgzzZf-OOYfSszYfaE1rra8Dz3A/exec";
+
+    document.getElementById('formColaborador').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const btnSalvar = document.getElementById('btnSalvar');
+        const msgStatus = document.getElementById('mensagemStatus');
+        
+        btnSalvar.disabled = true;
+        btnSalvar.innerText = "Salvando...";
+        msgStatus.style.display = "none";
+
+        // Mapeando exatamente a ordem solicitada por você
+        const dadosForm = {
+            nome: document.getElementById('nome').value,
+            cargo: document.getElementById('cargo').value,
+            setor: document.getElementById('setor').value,
+            telefone: document.getElementById('telefone').value,
+            email: document.getElementById('email').value,
+            admissao: document.getElementById('admissao').value,
+            status: document.getElementById('status').value,
+            obs: document.getElementById('obs').value
+        };
+
+        // Envio dos dados via POST (CORS habilitado por padrão no fetch)
+        fetch(URL_SCRIPT_GOOGLE, {
+            method: 'POST',
+            mode: 'no-cors', // Evita bloqueio local do navegador
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dadosForm)
+        })
+        .then(() => {
+            msgStatus.className = "sucesso";
+            msgStatus.innerHTML = "<i class='fa-solid fa-circle-check'></i> Colaborador cadastrado com sucesso no Google Sheets!";
+            msgStatus.style.display = "block";
+            document.getElementById('formColaborador').reset();
+        })
+        .catch(error => {
+            msgStatus.className = "erro";
+            msgStatus.innerHTML = "<i class='fa-solid fa-circle-xmark'></i> Ocorreu um erro ao salvar os dados.";
+            msgStatus.style.display = "block";
+            console.error('Erro:', error);
+        })
+        .finally(() => {
+            btnSalvar.disabled = false;
+            btnSalvar.innerText = "Salvar Colaborador";
+        });
+    });
+</script>
+</body>
+</html>
